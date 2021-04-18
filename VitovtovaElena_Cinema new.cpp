@@ -1,32 +1,35 @@
 #include "stdio.h"
 #include "TXLib.h"
 
-
+int Random(int min, int max);
 void DrowFonNight ();
 void DrowTextOut (int dvigx);
 void DrowFonSunrise ();
-void DrowStar ();
+void DrowFonStarts();
 void DrowTrain ();
+void DrowStar (int x, int y);
 void DrowRunHuman(int x, int y);
 void Human (int x, int y, COLORREF color);
 void DrowCloud (int dvigX, int y, int radius);
 void DrowSun (int dop);
+
 int humanStep;
 
 int main ()
     {
     txCreateWindow (1024, 600);
     DrowFonNight ();
+    DrowFonStarts();
     DrowTrain ();
     DrowTextOut (0);
-    DrowStar ();
+
 
     DrowFonSunrise ();
     DrowTrain ();
     DrowRunHuman (500, 430);
-    DrowRunHuman (500, 450);
+    DrowRunHuman (550, 450);
     DrowSun (5);
-    DrowRunHuman (550, 430);
+    DrowRunHuman (600, 430);
     DrowCloud (125,50,20);
     DrowSun (5);
     DrowCloud (125,170,20);
@@ -43,6 +46,7 @@ int main ()
 
 void DrowFonSunrise ()
     {
+    txPlaySound ("atmosfera-prirodyi-na-rassvete", SND_ASYNC);
     txSetFillColor (TX_LIGHTCYAN);
     txSetColor (TX_LIGHTCYAN);
     txRectangle (0, 0, 1024, 300);
@@ -146,6 +150,7 @@ void DrowTextOut (int dvigx)
     }
 void DrowFonNight ()
     {
+    txPlaySound ("nochnyie-sverchki.wav", SND_ASYNC);
     txSetFillColor (TX_BLUE);
     txSetColor (TX_BLUE);
     txRectangle (0, 0, 1024, 300);
@@ -167,12 +172,30 @@ void DrowFonNight ()
     txCircle (900, 70,35);
     }
 
-void DrowStar()
+int Random(int min, int max)
     {
-    txSetFillColor (RGB (190, 190, 250));
-    txSetColor (RGB (190, 190, 250));
-    POINT Star[5] = {{50,30}, {40, 20}, {75, 45}, {25, 15}, {60, 20}};
-    txPolygon (Star, 5);
+      return min + rand() % (max - min);
+    }
+
+void DrowFonStarts()
+    {
+    int starStep;
+    starStep = 0;
+    while (starStep<=30)
+      {
+        int starX = Random(20,720);
+        int starY = Random(10,300);
+        DrowStar(starX,starY);
+        starStep++;
+      }
+    }
+
+void DrowStar(int x, int y)
+    {
+    txSetFillColor ( RGB (250, 190, 250));
+    txSetColor ( RGB (250, 190, 250), 5);
+    txLine (x-3, y, x+3, y);
+    txLine (x,y-4, x, y+4);
     }
 
 void DrowSun (int dop)
