@@ -37,7 +37,7 @@ int main ()
     DrowCloud (125,50,20);
     DrowSun (5);
     DrowTrainSunrise (10, 5,  200, 60, 560, 240);
-    DrowRunHuman (500, 430);
+    DrowRunHuman (0, 430);
     DrowRunHuman (600, 430);
     DrowCloud (125,50,20);
     DrowSun (5);
@@ -200,7 +200,7 @@ void Human (int x, int y,COLORREF color)
 void DrowRunHuman(int x, int y)
     {
     int hmanStep=0;
-    while (humanStep<=300)
+    while (humanStep<=1000)
       {
         Human(x+humanStep,y,TX_BLACK);
         txSleep(200);
