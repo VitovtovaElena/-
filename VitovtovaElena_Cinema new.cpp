@@ -234,10 +234,10 @@ void DrowTextOut (int dvigx)
     while (dvigx< 1030)
      {
      txSetColor (TX_PINK);
-     txTextOut (dvigx, 100, "Рассвет. Закат");
+     txTextOut (dvigx, 100, "Sunrise. Night");
      txSleep (500);
      txSetColor (TX_BLUE);
-     txTextOut (dvigx, 100, "Рассвет. Закат");
+     txTextOut (dvigx, 100, "Sunrise. Night");
      dvigx+=50;
      }
     }
