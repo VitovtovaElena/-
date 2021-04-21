@@ -1,3 +1,8 @@
+//======================================================================================================
+// Cinema__Sunrise. Night
+//author: Vitovtova Elena, Samara
+//======================================================================================================
+
 #include "stdio.h"
 #include "TXLib.h"
 
@@ -26,8 +31,8 @@ int main ()
     DrowTrainNight (10, 5,  200, 60, 560, 240);
     DrowTextOut (0);
 
-
     DrowFonSunrise ();
+    DrowTrainNight (10, 5,  200, 60, 560, 240);
     DrowSun (5);
     DrowCloud (125,50,20);
     DrowSun (5);
@@ -37,15 +42,14 @@ int main ()
     DrowCloud (125,50,20);
     DrowSun (5);
      DrowTrainNight (10, 5,  200, 60, 560, 240);
-    DrowRunHuman (600, 430);
-    DrowRunHuman (550, 430);
+    DrowRunHuman (200, 430);
+    DrowRunHuman (0, 430);
     DrowCloud (400,80,20);
     DrowSun (5);
     DrowTextTitr (0);
 
     return 0;
     }
-
 
 void DrowFonSunrise ()
     {
@@ -65,6 +69,18 @@ void DrowFonSunrise ()
     txSetColor (TX_MAGENTA, 5);
     txLine (0, 560, 1024, 560);
     txLine (0, 575, 1024, 575);
+
+     txSetFillColor (TX_WHITE);
+     txSetColor (TX_WHITE);
+     txCircle  (300, 150 , 20);
+     txCircle (330,  150, 20);
+     txCircle (360, 150, 20);
+
+    txSetFillColor (TX_WHITE);
+     txSetColor (TX_WHITE);
+     txCircle (600, 200, 20);
+     txCircle (630,  200,  20);
+     txCircle (660, 200,  20);
     }
 
 void DrowTrainNight (int grusx, int vagonx, int linex, int kolesox, int kolesoy, int vagonx_2)
@@ -94,7 +110,6 @@ void DrowTrainNight (int grusx, int vagonx, int linex, int kolesox, int kolesoy,
        txCircle (kolesox+100, kolesoy, 15);
        txCircle (kolesox+220, kolesoy, 15);
        txCircle (kolesox+330, kolesoy, 15);
-
     }
 
 void DrowTrainSunrise (int grusx, int vagonx, int linex, int kolesox, int kolesoy, int vagonx_2)
@@ -309,14 +324,14 @@ void DrowSun (int dop)
 
 void DrowTextTitr (int dvigx)
     {
-    txSelectFont ("Times New Roman", 30);
+    txSelectFont ("Times New Roman", 50);
     while (dvigx< 1030)
-     {
-     txSetColor (TX_PINK);
-     txTextOut (dvigx, 600, "Выполнила: Витовтова Елена Васильевна, Самара. МБОУ Школа № 27");
-     txSleep (500);
-     txSetColor (TX_GREEN);
-     txTextOut (dvigx, 600, "Выполнила: Витовтова Елена Васильевна, Самара. МБОУ Школа № 27");
-     dvigx+=50;
-     }
+       {
+       txSetColor (TX_PINK);
+       txTextOut (dvigx, 600, "Выполнила: Витовтова Елена Васильевна, Самара. МБОУ Школа № 27");
+       txSleep (500);
+       txSetColor (TX_GREEN);
+       txTextOut (dvigx, 600, "Выполнила: Витовтова Елена Васильевна, Самара. МБОУ Школа № 27");
+       dvigx+=50;
+       }
     }
