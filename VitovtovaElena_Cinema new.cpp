@@ -13,6 +13,7 @@ void DrowRunHuman(int x, int y);
 void Human (int x, int y, COLORREF color);
 void DrowCloud (int dvigX, int y, int radius);
 void DrowSun (int dop);
+void DrowTextTitr (int dvigx);
 
 int humanStep;
 int trainStep;
@@ -29,19 +30,18 @@ int main ()
     DrowFonSunrise ();
     DrowSun (5);
     DrowCloud (125,50,20);
+    DrowSun (5);
     DrowTrainSunrise (10, 5,  200, 60, 560, 240);
     DrowRunHuman (500, 430);
-    DrowSun (5);
     DrowRunHuman (600, 430);
     DrowCloud (125,50,20);
     DrowSun (5);
-    DrowCloud (125,170,20);
-    DrowSun (5);
+     DrowTrainNight (10, 5,  200, 60, 560, 240);
     DrowRunHuman (600, 430);
     DrowRunHuman (550, 430);
     DrowCloud (400,80,20);
     DrowSun (5);
-    DrowCloud (300,50,20);
+    DrowTextTitr (0);
 
     return 0;
     }
@@ -101,7 +101,7 @@ void DrowTrainSunrise (int grusx, int vagonx, int linex, int kolesox, int koleso
     {
 
   trainStep=1;
-    while (trainStep<=35)
+    while (trainStep<=50)
        {
        txSetColor (TX_MAGENTA, 5);
        txLine (0, 560, 1024, 560);
@@ -133,7 +133,7 @@ void DrowTrainSunrise (int grusx, int vagonx, int linex, int kolesox, int koleso
          txCircle (kolesox+220, kolesoy, 15);
          txCircle (kolesox+330, kolesoy, 15);
 
-         txSleep (1000);
+         txSleep (200);
 
          txSetFillColor (TX_GREEN);
          txSetColor (TX_GREEN);
@@ -153,11 +153,11 @@ void DrowTrainSunrise (int grusx, int vagonx, int linex, int kolesox, int koleso
          txCircle (kolesox+220, kolesoy, 15);
          txCircle (kolesox+330, kolesoy, 15);
 
-        grusx+=10;
-        vagonx+=10;
-        linex+=10;
-        vagonx_2+=10;
-        kolesox+=10;
+        grusx+=20;
+        vagonx+=20;
+        linex+=20;
+        vagonx_2+=20;
+        kolesox+=20;
 
         if (trainStep%2==0)
           {
@@ -168,7 +168,6 @@ void DrowTrainSunrise (int grusx, int vagonx, int linex, int kolesox, int koleso
           kolesoy=560;
            }
          trainStep++;
-         txSleep (500);
          }
     }
 
@@ -189,7 +188,7 @@ void DrowRunHuman(int x, int y)
     while (humanStep<=300)
       {
         Human(x+humanStep,y,TX_BLACK);
-        txSleep(100);
+        txSleep(200);
         Human(x+humanStep,y,TX_GREEN);
         humanStep+=20;
       }
@@ -302,9 +301,22 @@ void DrowSun (int dop)
          txCircle (900, 100,30);
          }
       dop+=1;
-      }
-
+       }
     txSetFillColor (TX_YELLOW);
     txSetColor(TX_YELLOW);
-    txCircle (900, 100,40);
+     txCircle (900, 100,50);
+     }
+
+void DrowTextTitr (int dvigx)
+    {
+    txSelectFont ("Times New Roman", 30);
+    while (dvigx< 1030)
+     {
+     txSetColor (TX_PINK);
+     txTextOut (dvigx, 600, "Выполнила: Витовтова Елена Васильевна, Самара. МБОУ Школа № 27");
+     txSleep (500);
+     txSetColor (TX_GREEN);
+     txTextOut (dvigx, 600, "Выполнила: Витовтова Елена Васильевна, Самара. МБОУ Школа № 27");
+     dvigx+=50;
+     }
     }
