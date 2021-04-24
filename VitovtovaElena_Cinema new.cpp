@@ -18,7 +18,11 @@ void DrowRunHuman(int x, int y);
 void Human (int x, int y, COLORREF color);
 void DrowCloud (int dvigX, int y, int radius);
 void DrowSun (int dop);
-void DrowTextTitr (int dvigx);
+void DrowLake ();
+void DrowReeds (int stx, int sty, int ovx_0, int ovy_0, int ovx_1, int ovy_1);
+void DrowFlowerNight (int x0, int y0, int y1);
+void DrowFlowerSunrise (int x0, int y0, int y1);
+
 
 int humanStep;
 int trainStep;
@@ -27,11 +31,21 @@ int main ()
     {
     txCreateWindow (1024, 600);
     DrowFonNight ();
-    DrowFonStarts();
+    DrowFonStarts ();
+    DrowFlowerNight (50, 400, 360);
+    DrowFlowerNight (720, 400, 360);
+    DrowFlowerNight (200, 450, 410);
+    DrowFlowerNight (620, 400, 360);
+    DrowFlowerNight (700, 450, 410);
     DrowTrainNight (10, 5,  200, 60, 560, 240);
     DrowTextOut (0);
 
     DrowFonSunrise ();
+    DrowFlowerSunrise (50, 400, 360);
+    DrowFlowerSunrise (720, 400, 360);
+    DrowFlowerSunrise (200, 450, 410);
+    DrowFlowerSunrise (620, 400, 360);
+    DrowFlowerSunrise (700, 450, 410);
     DrowTrainNight (10, 5,  200, 60, 560, 240);
     DrowSun (5);
     DrowCloud (125,50,20);
@@ -41,12 +55,12 @@ int main ()
     DrowRunHuman (600, 430);
     DrowCloud (125,50,20);
     DrowSun (5);
-     DrowTrainNight (10, 5,  200, 60, 560, 240);
+    DrowTrainNight (10, 5,  200, 60, 560, 240);
     DrowRunHuman (200, 430);
     DrowRunHuman (0, 430);
     DrowCloud (400,80,20);
     DrowSun (5);
-    DrowTextTitr (0);
+//    DrowTextTitr (0);
 
     return 0;
     }
@@ -81,6 +95,8 @@ void DrowFonSunrise ()
      txCircle (600, 200, 20);
      txCircle (630,  200,  20);
      txCircle (660, 200,  20);
+
+     DrowLake();
     }
 
 void DrowTrainNight (int grusx, int vagonx, int linex, int kolesox, int kolesoy, int vagonx_2)
@@ -115,7 +131,7 @@ void DrowTrainNight (int grusx, int vagonx, int linex, int kolesox, int kolesoy,
 void DrowTrainSunrise (int grusx, int vagonx, int linex, int kolesox, int kolesoy, int vagonx_2)
     {
 
-  trainStep=1;
+    trainStep=1;
     while (trainStep<=50)
        {
        txSetColor (TX_MAGENTA, 5);
@@ -183,6 +199,12 @@ void DrowTrainSunrise (int grusx, int vagonx, int linex, int kolesox, int koleso
           kolesoy=560;
            }
          trainStep++;
+         DrowFlowerSunrise (50, 400, 360);
+         DrowFlowerSunrise (720, 400, 360);
+         DrowFlowerSunrise (200, 450, 410);
+         DrowFlowerSunrise (620, 400, 360);
+         DrowFlowerSunrise (700, 450, 410);
+         DrowLake();
          }
     }
 
@@ -206,8 +228,14 @@ void DrowRunHuman(int x, int y)
         txSleep(200);
         Human(x+humanStep,y,TX_GREEN);
         humanStep+=20;
-      }
-    }
+        DrowLake();
+        DrowFlowerSunrise (50, 400, 360);
+        DrowFlowerSunrise (720, 400, 360);
+        DrowFlowerSunrise (200, 450, 410);
+        DrowFlowerSunrise (620, 400, 360);
+        DrowFlowerSunrise (700, 450, 410);
+       }
+     }
 
 void DrowCloud (int dvigX, int y, int radius)
     {
@@ -252,6 +280,8 @@ void DrowFonNight ()
     txSetColor (TX_GREEN);
     txRectangle (0, 300, 1024, 550);
 
+    DrowLake();
+
     txSetFillColor (TX_DARKGRAY);
     txSetColor (TX_DARKGRAY);
     txRectangle (0, 550, 1024, 600);
@@ -265,28 +295,28 @@ void DrowFonNight ()
     txCircle (900, 70,35);
     }
 
-int Random(int min, int max)
+int Random (int min, int max)
     {
-      return min + rand() % (max - min);
+      return min + rand () % (max - min);
     }
 
-void DrowFonStarts()
+void DrowFonStarts ()
     {
     int starStep;
     starStep = 0;
     while (starStep<=30)
       {
-        int starX = Random(20,720);
-        int starY = Random(10,300);
-        DrowStar(starX,starY);
+        int starX = Random (20,900);
+        int starY = Random (10,300);
+        DrowStar (starX,starY);
         starStep++;
       }
     }
 
-void DrowStar(int x, int y)
+void DrowStar (int x, int y)
     {
     txSetFillColor ( RGB (250, 190, 250));
-    txSetColor ( RGB (250, 190, 250), 5);
+    txSetColor ( RGB (250, 190, 250), 3);
     txLine (x-3, y, x+3, y);
     txLine (x,y-4, x, y+4);
     }
@@ -335,3 +365,46 @@ void DrowTextTitr (int dvigx)
        dvigx+=50;
        }
     }
+
+void DrowLake()
+    {
+    txSetColor (RGB (100, 100, 255));
+    txSetFillColor (RGB (100, 100, 255));
+    txEllipse (300, 350, 600, 450);
+    }
+
+//void DrowReeds (int stx, int sty, int ovx_0, int ovy_0, int ovx_1, int ovy_1)
+   // {
+     //txSetColor (RGB (121, 96, 76), 3);
+     //txSetFillColor (RGB (133, 87, 35));
+
+     //for  (int i=1; i<=5;  i+=0,5)
+        //{
+         //txline (x0, y0, )
+
+void DrowFlowerNight (int x0, int y0, int y1)
+    {
+    txSetColor (RGB (121, 255, 76), 3);
+    txLine (x0, y0, x0, y1);
+    txSetColor (RGB (255, 80, 76));
+    txSetFillColor (RGB (255, 87, 35));
+    txCircle (x0, y1, 7);
+    }
+
+void DrowFlowerSunrise (int x0, int y0, int y1)
+    {
+    txSetColor (RGB (121, 255, 76), 3);
+    txLine (x0, y0, x0, y1);
+
+    for (int i=10; i<=255; i+=50)
+      {
+      txSetColor (RGB (i, 80, 76));
+      txSetFillColor (RGB (i, 87, 35));
+      txCircle (x0, y1, 7);
+      txCircle (x0+14, y1, 7);
+      txCircle (x0-14, y1, 7);
+      txCircle (x0, y1+14, 7);
+      txCircle (x0, y1-14, 7);
+      }
+    }
+
