@@ -2,7 +2,6 @@
 // Cinema__Sunrise. Night
 //author: Vitovtova Elena, Samara
 //======================================================================================================
-
 #include "stdio.h"
 #include "TXLib.h"
 
@@ -19,7 +18,6 @@ void Human (int x, int y, COLORREF color);
 void DrowCloud (int dvigX, int y, int radius);
 void DrowSun (int dop);
 void DrowLake ();
-void DrowReeds (int stx, int sty, int ovx_0, int ovy_0, int ovx_1, int ovy_1);
 void DrowFlowerNight (int x0, int y0, int y1);
 void DrowFlowerSunrise (int x0, int y0, int y1);
 
@@ -97,7 +95,8 @@ void DrowFonSunrise ()
      txCircle (660, 200,  20);
 
      DrowLake();
-    }
+
+     }
 
 void DrowTrainNight (int grusx, int vagonx, int linex, int kolesox, int kolesoy, int vagonx_2)
     {
@@ -373,15 +372,6 @@ void DrowLake()
     txEllipse (300, 350, 600, 450);
     }
 
-//void DrowReeds (int stx, int sty, int ovx_0, int ovy_0, int ovx_1, int ovy_1)
-   // {
-     //txSetColor (RGB (121, 96, 76), 3);
-     //txSetFillColor (RGB (133, 87, 35));
-
-     //for  (int i=1; i<=5;  i+=0,5)
-        //{
-         //txline (x0, y0, )
-
 void DrowFlowerNight (int x0, int y0, int y1)
     {
     txSetColor (RGB (121, 255, 76), 3);
@@ -396,15 +386,16 @@ void DrowFlowerSunrise (int x0, int y0, int y1)
     txSetColor (RGB (121, 255, 76), 3);
     txLine (x0, y0, x0, y1);
 
-    for (int i=10; i<=255; i+=50)
-      {
-      txSetColor (RGB (i, 80, 76));
-      txSetFillColor (RGB (i, 87, 35));
-      txCircle (x0, y1, 7);
-      txCircle (x0+14, y1, 7);
-      txCircle (x0-14, y1, 7);
-      txCircle (x0, y1+14, 7);
-      txCircle (x0, y1-14, 7);
-      }
-    }
+    //enum Zvet  {  TX_WHITE, TX_LIGHTMAGENTA,  TX_RED, TX_ORANGE , TX_LIGHTRED};
+   // int i ;
+    //for (i=1; i<=5; i++)
 
+        txSetColor (TX_LIGHTMAGENTA);
+        txSetFillColor (TX_LIGHTMAGENTA);
+        txCircle (x0, y1, 7);
+        txCircle (x0+14, y1, 7);
+        txCircle (x0-14, y1, 7);
+        txCircle (x0, y1+14, 7);
+        txCircle (x0, y1-14, 7);
+
+    }
