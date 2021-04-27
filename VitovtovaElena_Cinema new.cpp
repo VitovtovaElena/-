@@ -21,6 +21,8 @@ void DrawLake ();
 void DrawFlowerNight (int x0, int y0, int y1);
 void DrawFlowerSunrise (int x0, int y0, int y1);
 void DrawTextTitr ();
+void DrawFlower (int x0, int y0, int y1);
+void DrawFire (int thickness);
 
 
 
@@ -53,8 +55,6 @@ int main ()
     DrawCloud (125,50,20);
     DrawSun (5);
     DrawTrainNight (10, 5,  200, 60, 560, 240);
-    DrawRunHuman (200, 430);
-    DrawRunHuman (0, 430);
     DrawCloud (400,80,20);
     DrawSun (5);
     DrawTextTitr ();
@@ -196,11 +196,11 @@ void DrawTrainSunrise (int cargox, int vanx, int linex, int wheelx, int wheely, 
             wheely = 560;
             }
         trainStep ++;
-        DrawFlowerSunrise (50, 400, 360);
-        DrawFlowerSunrise (720, 400, 360);
-        DrawFlowerSunrise (200, 450, 410);
-        DrawFlowerSunrise (620, 400, 360);
-        DrawFlowerSunrise (700, 450, 410);
+        DrawFlower (50, 400, 360);
+        DrawFlower (720, 400, 360);
+        DrawFlower (200, 450, 410);
+        DrawFlower (620, 400, 360);
+        DrawFlower (700, 450, 410);
         DrawLake();
         }
     }
@@ -226,11 +226,11 @@ void DrawRunHuman(int x, int y)
          Human(x + humanStep,y,TX_GREEN);
          humanStep += 20;
          DrawLake();
-         DrawFlowerSunrise (50, 400, 360);
-         DrawFlowerSunrise (720, 400, 360);
-         DrawFlowerSunrise (200, 450, 410);
-         DrawFlowerSunrise (620, 400, 360);
-         DrawFlowerSunrise (700, 450, 410);
+         DrawFlower (50, 400, 360);
+         DrawFlower (720, 400, 360);
+         DrawFlower (200, 450, 410);
+         DrawFlower (620, 400, 360);
+         DrawFlower (700, 450, 410);
           }
     }
 
@@ -259,13 +259,17 @@ void DrawTextOut (int dvigx)
 
     while (dvigx < 1030)
          {
-         txSetColor (TX_PINK);
+         txSetColor (TX_PINK, 3);
+         txSetFillColor (RGB (255, 0, 0));
          txTextOut (dvigx, 100, "Sunrise. Night");
+         DrawFire (9);
          txSleep (500);
-         txSetColor (TX_BLUE);
+         txSetColor (TX_BLUE, 3);
+         txSetFillColor (TX_BLUE);
          txTextOut (dvigx, 100, "Sunrise. Night");
          dvigx += 50;
-          }
+         DrawFire (3);
+         }
     }
 void DrawFonNight ()
     {
@@ -348,6 +352,11 @@ void DrawSun (int dop)
     txSetFillColor (TX_YELLOW);
     txSetColor(TX_YELLOW);
     txCircle (900, 100,50);
+    DrawFlowerSunrise (50, 400, 360);
+    DrawFlowerSunrise (720, 400, 360);
+    DrawFlowerSunrise (200, 450, 410);
+    DrawFlowerSunrise (620, 400, 360);
+    DrawFlowerSunrise (700, 450, 410);
     }
 
 void DrawTextTitr ()
@@ -367,7 +376,7 @@ void DrawLake ()
 void DrawFlowerNight (int x0, int y0, int y1)
     {
     txSetColor (RGB (121, 255, 76), 3);
-    txLine (x0, y0, x0, y1);
+    txLine (x0,  y0, x0, y1);
     txSetColor (RGB (255, 80, 76));
     txSetFillColor (RGB (255, 87, 35));
     txCircle (x0, y1, 7);
@@ -389,4 +398,30 @@ void DrawFlowerSunrise (int x0, int y0, int y1)
         txCircle (x0, y1 - 14, 7);
         txSleep (50);
         }
+    }
+
+void DrawFlower (int x0, int y0, int y1)
+    {
+    txSetColor (RGB (121, 255, 76), 3);
+    txLine (x0, y0, x0, y1);
+
+    txSetColor (RGB (255, 0, 0));
+    txSetFillColor (RGB (255, 0, 0));
+    txCircle (x0, y1, 7);
+    txCircle (x0 + 14, y1, 7);
+    txCircle (x0 - 14, y1, 7);
+    txCircle (x0, y1 + 14, 7);
+    txCircle (x0, y1 - 14, 7);
+    }
+
+void DrawFire (int thickness)
+    {
+    txSetColor (RGB (158, 128, 0));
+    txSetFillColor (RGB (158, 128, 0));
+    //txRectangle (370, 300, 380, 340);
+    txRectangle (360, 340, 390, 350);
+    txSetColor (RGB (255, 0, 0), thickness);
+    txSetFillColor (RGB (255, 128, 0));
+    const POINT triangle[3] = {{350, 340}, {400, 340}, {375, 280}};
+    txPolygon (triangle, 3);
     }
