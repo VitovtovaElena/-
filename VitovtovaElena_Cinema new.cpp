@@ -52,8 +52,6 @@ int main ()
     DrawTrainSunrise (10, 5,  200, 60, 560, 240);
     DrawRunHuman (0, 430);
     DrawRunHuman (600, 430);
-    DrawCloud (125,50,20);
-    DrawSun (5);
     DrawTrainNight (10, 5,  200, 60, 560, 240);
     DrawCloud (400,80,20);
     DrawSun (5);
@@ -262,13 +260,13 @@ void DrawTextOut (int dvigx)
          txSetColor (TX_PINK, 3);
          txSetFillColor (RGB (255, 0, 0));
          txTextOut (dvigx, 100, "Sunrise. Night");
-         DrawFire (9);
+         DrawFire (12);
          txSleep (500);
+         DrawFire (5);
          txSetColor (TX_BLUE, 3);
          txSetFillColor (TX_BLUE);
          txTextOut (dvigx, 100, "Sunrise. Night");
-         dvigx += 50;
-         DrawFire (3);
+         dvigx += 30;
          }
     }
 void DrawFonNight ()
@@ -361,7 +359,7 @@ void DrawSun (int dop)
 
 void DrawTextTitr ()
     {
-    txSelectFont ("Times New Roman", 30);
+    txSelectFont ("Times New Roman", 20);
     txSetColor (TX_PINK);
     txTextOut (0, 300, "Выполнила: Витовтова Елена Васильевна, Самара. ");
     }
@@ -387,7 +385,7 @@ void DrawFlowerSunrise (int x0, int y0, int y1)
     txSetColor (RGB (121, 255, 76), 3);
     txLine (x0, y0, x0, y1);
 
-    for (int i = 50; i <= 255; i += 50)
+    for (int i = 20; i <= 255; i += 30)
         {
         txSetColor (RGB (i, 0, 0));
         txSetFillColor (RGB (i, 0, 0));
@@ -418,7 +416,6 @@ void DrawFire (int thickness)
     {
     txSetColor (RGB (158, 128, 0));
     txSetFillColor (RGB (158, 128, 0));
-    //txRectangle (370, 300, 380, 340);
     txRectangle (360, 340, 390, 350);
     txSetColor (RGB (255, 0, 0), thickness);
     txSetFillColor (RGB (255, 128, 0));
